@@ -39,7 +39,7 @@ int main()
         cout << "Class D";
 
     else    
-        cout << "Non-Applicable class";
+        cout <<"Non-Applicable Class";
     return 0;
 
 }
