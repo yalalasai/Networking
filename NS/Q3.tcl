@@ -1,26 +1,26 @@
-set ns [network Simulator]
+set ns [new Simulator]
 set tracefile [open out.tr w]
 
 $ns trace-all $tracefile
 set nf [open out.nam w]
 $ns namtrace-all $nf
 
-proc finish{} {
+proc finish {} {
     global ns tracefile nf
     $ns flush-trace
     close $nf
     close $tracefile
     exec nam out.nam &
-    exit 0
+    exit
 }
 set n0 [$ns node]
 set n1 [$ns node]
 set n2 [$ns node]
 set n3 [$ns node]
 
-set duplex-link $n0 $n2 5Mb 10ms DropTail
-set duplex-link $n1 $n2 0.5Mb 10ms DropTail
-set duplex-link $n2 $n3 1.5Mb 10ms DropTail
+$ns duplex-link $n0 $n2 5Mb 10ms DropTail
+$ns duplex-link $n1 $n2 0.5Mb 10ms DropTail
+$ns duplex-link $n2 $n3 1.5Mb 10ms DropTail
 
 set tcp0 [new Agent/TCP]
 $ns attach-agent $n0 $tcp0
